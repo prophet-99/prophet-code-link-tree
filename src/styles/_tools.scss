@@ -1,0 +1,24 @@
+$sm-breakpoint: 576px;
+$md-breakpoint: 768px;
+$lg-breakpoint: 992px;
+$xl-breakpoint: 1200px;
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == 'sm' {
+    @media screen and (min-width: $sm-breakpoint) {
+      @content;
+    }
+  } @else if $breakpoint == 'md' {
+    @media screen and (min-width: $md-breakpoint) {
+      @content;
+    }
+  } @else if $breakpoint == 'lg' {
+    @media screen and (min-width: $lg-breakpoint) {
+      @content;
+    }
+  } @else if $breakpoint == 'xl' {
+    @media screen and (min-width: $xl-breakpoint) {
+      @content;
+    }
+  }
+}

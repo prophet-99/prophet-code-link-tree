@@ -1,0 +1,46 @@
+---
+import { TIK_TOK_URL, YOUTUBE_URL, INSTAGRAM_URL, TWITCH_URL } from '@/constants/prophet-code-links';
+import TikTokIcon from "@/icons/TikTokIcon.astro";
+import YouTubeIcon from "@/icons/YouTubeIcon.astro";
+import InstagramIcon from "@/icons/InstagramIcon.astro";
+import TwitchIcon from "@/icons/TwitchIcon.astro";
+
+const socialNetworks = [
+  { url: TIK_TOK_URL, IconComponent: TikTokIcon },
+  { url: YOUTUBE_URL, IconComponent: YouTubeIcon },
+  { url: INSTAGRAM_URL, IconComponent: InstagramIcon },
+  { url: TWITCH_URL, IconComponent: TwitchIcon },
+];
+---
+
+<section class="social-network">
+  {
+    socialNetworks.map(({ url, IconComponent }) => (
+      <a
+        class="social-network__link"
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <IconComponent />
+      </a>
+    ))
+  }
+</section>
+
+<style lang="scss">
+  .social-network {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-block-start: 2rem;
+
+    &__link {
+      transition: transform 0.3s ease-out;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+</style>

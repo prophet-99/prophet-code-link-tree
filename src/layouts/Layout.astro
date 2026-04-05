@@ -1,22 +1,82 @@
+---
+import '@/styles/index.scss';
+
+import heroeMobileImg from '@/assets/heroe-mobile.webp';
+import heroeDesktopImg from '@/assets/heroe-desktop.webp';
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<meta name="generator" content={ Astro.generator } />
+		<title>Prophet Code | Enlaces</title>
 	</head>
 	<body>
-		<slot />
+		<nav class="heroe">
+			<picture>
+				<source 
+					media="(min-width: 768px)" 
+					srcset={heroeDesktopImg.src}
+					width={heroeDesktopImg.width}
+					height={heroeDesktopImg.height}
+				/>
+				<img
+					class="heroe__thumb"
+					src={heroeMobileImg.src}
+					alt="Logo de Prophet Code con fondo de código"
+					width={heroeMobileImg.width}
+					height={heroeMobileImg.height}
+				/>
+			</picture>
+		</nav>
+		<main class="container">
+			<slot />
+		</main>
 	</body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
+<style lang="scss">
+	@use '../styles/tools' as tools;
+
+	.heroe {
+		position: relative;
+		height: 50vh;
+		overflow: hidden;
+
+		&__thumb {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			position: relative;
+
+			@include tools.respond-to('md') {
+				object-position: center top;
+			}
+
+			@include tools.respond-to('xl') {
+				object-position: center -2rem;
+			}
+		}
+
+		&::after {
+			content: '';
+			position: absolute;
+			display: block;
+			left: -25%;
+			top: 50%;
+			width: 150%;
+			height: 100%;
+			background-color: var(--neutral-black-color);
+			clip-path: ellipse(49% 40% at 50% 50%);
+		}
+	}
+
+	.container {
+		margin-top: -25vh;
+    position: relative;
+		padding: 0 1rem 2em;
 	}
 </style>
